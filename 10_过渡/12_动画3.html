@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style type="text/css">
+		span {
+			display: inline-block; /* 块级元素宽度默认同父元素，行内元素没有宽高 */
+		}
+		.bounce-enter-active {
+			animation: bounce-in .5s;
+		}
+		.bounce-leave-active {
+			animation: bounce-out .5s;
+		}
+		@keyframes bounce-in {
+			0% {
+				transform: scale(0);
+			}
+			50% {
+				transform: scale(1.5);
+			}
+			100% {
+				transform: scale(1);
+			}
+		}
+		@keyframes bounce-out {
+			0% {
+				transform: scale(1);
+			}
+			50% {
+				transform: scale(1.5);
+			}
+			100% {
+				transform: scale(0);
+			}
+		}
+	</style>
+</head>
+<body>
+<div id="app">
+	<button @click="isShow=!isShow">切换</button><br />
+	<transition name="bounce">
+		<span v-show="isShow">Hello</span>
+	</transition>
+</div>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+	new Vue({
+		el: '#app',
+		data: {
+			isShow: true
+		}
+	});
+</script>
+</body>
+</html>

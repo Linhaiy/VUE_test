@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+	<style>
+		.box {
+			width: 200px;
+			height: 200px;
+			background: #bfa;
+		}
+		.box div {
+			width: 100px;
+			height: 100px;
+			background: #abf;
+		}
+	</style>
+</head>
+<body>
+<!--
+1. 绑定监听:
+  v-on:xxx="fun"
+  @xxx="fun"
+  @xxx="fun(参数)"
+  默认事件形参: event
+  隐含属性对象: $event
+2. 事件修饰符:
+  .prevent : 阻止事件的默认行为 event.preventDefault()
+  .stop : 停止事件冒泡 event.stopPropagation()
+3. 按键修饰符
+  .keycode : 操作的是某个keycode值的健
+  .enter : 操作的是enter键
+-->
+
+<div id="example">
+
+	<h2>1. 绑定监听</h2>
+	<button v-on:click="test1">测试一</button>
+	<button @click="test1">测试二</button>
+	<button @click="test2('abc',$event)">测试三</button>
+
+	<h2>2. 事件修饰符</h2>
+	<!--阻止事件的默认行为 .prevent-->
+	<a href="http://www.atguigu.com" @click.prevent="test3">尚硅谷</a>
+	<!--停止事件冒泡 .stop-->
+	<div class="box" @click="test4">
+		<div @click.stop="test5"></div>
+	</div>
+
+	<h2>3. 按键修饰符</h2>
+	<input type="text" @keyup.enter="test6">
+	<input type="text" @keyup.65="test6">
+
+</div>
+
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+	new Vue({
+		el: '#example',
+		data: {
+			test1 (event) {
+				alert(event.clientY)
+			},
+			test2 (msg, event) {
+				alert(msg + ' --- ' + event.clientX)
+			},
+			test3 () {
+				alert('prevent 阻止事件的默认行为')
+			},
+			test4 () {
+				alert('点击的是外部的div')
+			},
+			test5 () {
+				alert('点击的是内部的div')
+			},
+			test6 () {
+				alert('监控按键')
+			}
+		}
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>15_动画</title>
+	<style type="text/css">
+		.fade-enter-active { /*进入的transition*/
+			transition: all 1s linear;
+		}
+		.fade-leave-active { /*离开的transition*/
+			transition: all .5s linear;
+		}
+		.fade-enter, .fade-leave-to {
+			opacity: 0;
+			transform: translateX(10px);
+		}
+	</style>
+</head>
+<body>
+<div id="app">
+	<button @click="isShow=!isShow">切换</button>
+	<transition name="fade">
+		<p v-show="isShow">Hello</p>
+	</transition>
+</div>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript">
+	new Vue({
+		el: '#app',
+		data: {
+			isShow: true
+		}
+	});
+</script>
+</body>
+</html>
